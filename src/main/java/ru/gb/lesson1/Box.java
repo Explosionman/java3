@@ -4,31 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Box<T extends Fruit> {
-    private T fruit;
     private List<T> list = new ArrayList<T>();
-
-    public Box(T fruit) {
-        this.fruit = fruit;
-        list.add(fruit);
-    }
 
     public List<T> getList() {
         return list;
     }
 
     public int getQuantity() {
-        if (list.isEmpty()) {
-            return 0;
-        }
-        return list.get(0).getQuantity();
+        return list.size();
     }
 
     public float getWeight() {
-        return list.get(0).getQuantity() * list.get(0).getWeight();
+        float sum = 0.0f;
+        for (int i = 0; i < getList().size(); i++) {
+            sum += getList().get(i).getWeight();
+        }
+        return sum;
     }
 
     public boolean compare(Box box) {
-        return getWeight() == box.getWeight();
+        return Math.abs(getWeight() - box.getWeight()) < 0.00001f;
     }
 
     public void transferFruitsTo(Box<T> box) {
@@ -36,7 +31,7 @@ public class Box<T extends Fruit> {
         list.clear();
     }
 
-    public void addFruitsInBox(int quantity) {
-        list.get(0).setQuantity((quantity + list.get(0).getQuantity()));
+    public void addFruitInBox(T fruit) {
+        list.add(fruit);
     }
 }
