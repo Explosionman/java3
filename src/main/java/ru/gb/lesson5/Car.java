@@ -51,16 +51,7 @@ public class Car implements Runnable {
         }
 
         for (int i = 0; i < race.getStages().size(); i++) {
-
-            if (race.getStages().get(i).getClass().equals(Tunnel.class)) {
-                try {
-                    MainClass.SEMAPHORE.acquire();
-                    race.getStages().get(i).go(this);
-                    MainClass.SEMAPHORE.release();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else race.getStages().get(i).go(this);
+             race.getStages().get(i).go(this);
         }
         int result = MainClass.ai.incrementAndGet();
         if (result == 1) {
