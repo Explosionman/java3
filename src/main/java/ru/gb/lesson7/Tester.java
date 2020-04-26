@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Tester {
@@ -24,6 +25,7 @@ public class Tester {
 
         Constructor constructor = h.getConstructor(String.class, String.class, int.class, int.class);
         Object obj = constructor.newInstance("Alex", "Fisher", 30, 180);
+        LinkedList<String> asd = new LinkedList<>();
 
         Method[] methods = h.getDeclaredMethods();
 
